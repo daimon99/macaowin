@@ -8,6 +8,8 @@
 ## 安装
 
 ```
+git clone http://github.com/daimon99/macaowin
+cd macaowin
 pip install -r req.txt
 ```
 
