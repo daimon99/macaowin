@@ -4,7 +4,7 @@ import click
 
 
 class Me(object):
-    def __init__(self, name='张三', money=0):
+    def __init__(self, name=u'张三', money=0):
         self.money = money
         self.name = name
 
@@ -18,11 +18,11 @@ class Me(object):
         self.money -= money
 
     def __unicode__(self):
-        return '%s 还有 %s 元钱' % (self.name, self.money)
+        return u'%s 还有 %s 元钱' % (self.name, self.money)
 
 
 class Plat(object):
-    def __init__(self, name='赌博公司', money=0):
+    def __init__(self, name=u'赌博公司', money=0):
         self.money = money
         self.name = name
 
@@ -33,7 +33,7 @@ class Plat(object):
         self.money -= money
 
     def __unicode__(self):
-        return '%s 还有 %s 元钱' % (self.name, self.money)
+        return u'%s 还有 %s 元钱' % (self.name, self.money)
 
 
 class Game(object):
@@ -88,7 +88,7 @@ def print_result(game, plat, person1, init_money, bet_money):
     else:
         result = click.style(game.result, fg='red')
     wallet_max = click.style(str(game.max_money), fg='red', underline=True)
-    click.echo('Turn %s: %s, 我身上带了 %s 元, 这次下注 %s 元, 钱包还剩 %s 元(最多时钱包有 %s 元, 最多连输次数 %s, 累计赢 %s, 累计输 %s, 赢率: %d )' % (
+    click.echo(u'Turn %s: %s, 我身上带了 %s 元, 这次下注 %s 元, 钱包还剩 %s 元(最多时钱包有 %s 元, 最多连输次数 %s, 累计赢 %s, 累计输 %s, 赢率: %d )' % (
     game.turn, result, init_money, bet_money, person1.money, wallet_max, game.max_lose_count, game.total_win,
     game.total_lose, game.total_win / float(game.total_lose + game.total_win) * 100 if game.total_lose > 0 else 0))
 
@@ -106,8 +106,8 @@ def go(wallet, bet):
     me.money = plat.money = my_wallet
     init_bet_money = bet
     import time
-    click.echo('你带了 %s 元, 起始赌注: %s' % (my_wallet, init_bet_money))
-    click.echo('开始赌局...')
+    click.echo(u'你带了 %s 元, 起始赌注: %s' % (my_wallet, init_bet_money))
+    click.echo(u'开始赌局...')
     while 1:
         # time.sleep(0.01)
         # money_bet = click.prompt('赌注: ', init_bet_money)
@@ -123,10 +123,10 @@ def go(wallet, bet):
             init_bet_money = bet
 
         if me.money < 0: break
-    click.echo('没钱了。。。')
+    click.echo(u'没钱了。。。')
     power = game.max_money / float(my_wallet)
     turn = game.max_money_on_turn
-    click.echo('但在第 %s 轮, 你曾经是 %.1f 倍神!' % (turn, power))
+    click.echo(u'但在第 %s 轮, 你曾经是 %.1f 倍神!' % (turn, power))
 
 
 if __name__ == '__main__':
