@@ -119,8 +119,8 @@ def go(wallet, bet):
 
         if me.money < 0: break
     click.echo('没钱了。。。')
-    power = game.max_money / my_wallet
-    click.echo('但你曾经是 %s 倍神!' % int(power))
+    power = game.max_money / float(my_wallet)
+    click.echo('但你曾经是 %.1f 倍神!' % power)
 
 
 if __name__ == '__main__':
