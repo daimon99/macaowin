@@ -58,6 +58,8 @@ class Game(object):
         :type money: int
         """
         self.turn += 1
+        if self.max_money < person1.money:
+            self.max_money = person1.money
         import random
         a = random.randint(0, 1)
         self.result = self.NOT_START
@@ -65,8 +67,6 @@ class Game(object):
             self.result = self.WIN
             self.current_continue_lose_count = 0
             self.total_win += 1
-            if self.max_money < person1.money:
-                self.max_money = person1.money
             plat.lose(money)
             person1.win(money)
         else:
@@ -86,7 +86,7 @@ def print_result(game, plat, person1, init_money, bet_money):
     else:
         result = click.style(game.result, fg='red')
     wallet_max = click.style(str(game.max_money), fg='red', underline=True)
-    click.echo('Turn %s: %s, 我身上带了 %s 元, 每次赌 %s 元, 还剩 %s 元(最多时钱包有 %s 元, 最多连输次数 %s, 累计赢 %s, 累计输 %s, 赢率: %d )' % (
+    click.echo('Turn %s: %s, 我身上带了 %s 元, 这次下注 %s 元, 钱包还剩 %s 元(最多时钱包有 %s 元, 最多连输次数 %s, 累计赢 %s, 累计输 %s, 赢率: %d )' % (
     game.turn, result, init_money, bet_money, person1.money, wallet_max, game.max_lose_count, game.total_win,
     game.total_lose, game.total_win / float(game.total_lose + game.total_win) * 100 if game.total_lose > 0 else 0))
 
@@ -104,15 +104,14 @@ def go(wallet, bet):
     me.money = plat.money = my_wallet
     init_bet_money = bet
     import time
-
+    click.echo('你带了 %s 元, 起始赌注: %s' % (my_wallet, init_bet_money))
+    click.echo('开始赌局...')
     while 1:
         # time.sleep(0.01)
         # money_bet = click.prompt('赌注: ', init_bet_money)
-        click.echo('赌注: %s' % init_bet_money)
         money_bet = init_bet_money
-        click.echo('开始赌局...')
         result = game.start_new_turn(plat, me, money_bet)
-        print_result(game, plat, me, my_wallet, bet)
+        print_result(game, plat, me, my_wallet, money_bet)
         if result == Game.LOSE:
             init_bet_money *= 2
         else:
