@@ -50,6 +50,7 @@ class Game(object):
         self.total_lose = 0
         self.total_win = 0
         self.max_money = 0
+        self.max_money_on_turn = 0
 
     def start_new_turn(self, plat, person1, money):
         """开始新一轮赌局
@@ -60,6 +61,7 @@ class Game(object):
         self.turn += 1
         if self.max_money < person1.money:
             self.max_money = person1.money
+            self.max_money_on_turn = self.turn
         import random
         a = random.randint(0, 1)
         self.result = self.NOT_START
@@ -115,12 +117,13 @@ def go(wallet, bet):
         if result == Game.LOSE:
             init_bet_money *= 2
         else:
-            init_bet_money = 100
+            init_bet_money = bet
 
         if me.money < 0: break
     click.echo('没钱了。。。')
     power = game.max_money / float(my_wallet)
-    click.echo('但你曾经是 %.1f 倍神!' % power)
+    turn = game.max_money_on_turn
+    click.echo('但在第 %s 轮, 你曾经是 %.1f 倍神!' % (turn, power))
 
 
 if __name__ == '__main__':
