@@ -7,7 +7,9 @@
 
 ## 安装
 
+```
 pip install -r req.txt
+```
 
 ## 运行
 
