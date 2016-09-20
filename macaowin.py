@@ -116,6 +116,9 @@ def go(wallet, bet):
         print_result(game, plat, me, my_wallet, money_bet)
         if result == Game.LOSE:
             init_bet_money *= 2
+            if init_bet_money > 20000:
+                # 大于2万的时候, 就不跟了。。。因为没钱
+                init_bet_money = bet
         else:
             init_bet_money = bet
 
