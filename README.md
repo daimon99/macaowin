@@ -13,9 +13,21 @@ cd macaowin
 pip install -r req.txt
 ```
 
+or
+
+直接下载编译后的可执行文件
+
+[win版本](http://github.com/daimon99/macaowin/dist/macaowin.zip)
+[mac版本](http://github.com/daimon99/macaowin/dist/macaowin)
+
 ## 运行
 
 你要带10000元，起初赌注1000元，看看结果
+```
+cd dist
+macaowin
+```
+
 ```
 python macaowin.py --wallet 100000 --bet 1000
 ```
@@ -23,8 +35,8 @@ python macaowin.py --wallet 100000 --bet 1000
 也可以：
 ```
 python macaowin.py
-带多少钱去澳门 [100000]: 
-每次基础下注金额 [1000]: 
+带多少钱去澳门 [100000]:
+每次基础下注金额 [1000]:
 ```
 
 帮助：

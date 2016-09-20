@@ -89,14 +89,13 @@ def print_result(game, plat, person1, init_money, bet_money):
         result = click.style(game.result, fg='red')
     wallet_max = click.style(str(game.max_money), fg='red', underline=True)
     click.echo(u'Turn %s: %s, 我身上带了 %s 元, 这次下注 %s 元, 钱包还剩 %s 元(最多时钱包有 %s 元, 最多连输次数 %s, 累计赢 %s, 累计输 %s, 赢率: %d )' % (
-    game.turn, result, init_money, bet_money, person1.money, wallet_max, game.max_lose_count, game.total_win,
-    game.total_lose, game.total_win / float(game.total_lose + game.total_win) * 100 if game.total_lose > 0 else 0))
+        game.turn, result, init_money, bet_money, person1.money, wallet_max, game.max_lose_count, game.total_win,
+        game.total_lose, game.total_win / float(game.total_lose + game.total_win) * 100 if game.total_lose > 0 else 0))
 
 
 @click.command()
 @click.option('--wallet', default=100000, help=u'带多少钱去澳门', prompt=u'带多少钱去澳门')
-@click.option('--bet', default=1000, prompt=u'每次基础下注金额',
-              help=u'每次基础下注金额')
+@click.option('--bet', default=1000, prompt=u'每次基础下注金额', help=u'每次基础下注金额')
 def go(wallet, bet):
     game = Game()
     plat = Plat()
