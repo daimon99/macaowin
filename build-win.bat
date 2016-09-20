@@ -1,0 +1,1 @@
+pyinstaller -F macaowin.py -p c:\python27\s

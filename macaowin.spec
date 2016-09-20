@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['macaowin.py'],
-             pathex=['/Users/daiyue/git/macaowin'],
+             pathex=['c:\\python27\\', 'C:\\Users\\Administrator\\git\\macaowin'],
              binaries=None,
              datas=None,
              hiddenimports=[],
